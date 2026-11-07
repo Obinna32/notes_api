@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const { rateLimit } = require("express-rate-limit");
 
 const authRoutes = require("./routes/authRoutes");
+const noteRoutes = require("./routes/noteRoutes");
 const AppError = require("./utils/AppError");
 const errorHandler = require("./middleware/errorHandler");
 
@@ -26,6 +27,7 @@ const authLimiter = rateLimit({
 });
 
 app.use("/api/v1/auth", authLimiter, authRoutes);
+app.use("/api/v1/notes", noteRoutes);
 
 app.use((req, res, next) => {
     next(new AppError(`Cannot find ${req.method} ${req.originalUrl}`, 404));

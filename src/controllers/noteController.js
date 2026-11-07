@@ -39,3 +39,32 @@ exports.getNote = async (req, res) => {
     res.status(200).json({ status: "success", data: {note}});
 };
 
+exports.updateNote = async(req, res) => {
+    const body = req.body ?? {};
+    const updates = {};
+    ALLOWED_FIELDS.forEach((field) => {
+        if(body[field] !== undefined) updates[field] = body[field];
+    });
+
+    if (Object.keys(updates).length === 0){
+        throw new AppError("Provide at least one field to update", 400);
+    }
+
+    const note = await Note.findByIdAndUpdate(
+        {_id: req.params.id, owner: req.user._id},
+        updates,
+        {new: true, runValidators: true}
+    );
+
+    if (!note) throw new AppError("No note found with that ID", 404);
+    res.status(200).json({status: "success", data: { note }});
+};
+
+exports.deleteNote = async (req, res) => {
+    const note = await Note.findOneAndDelete({
+        _id: req.params.id,
+        owner: req.user._id
+    });
+    if (!note) throw new AppError("No note found with that ID", 404);
+    res.status(204).send();
+};
