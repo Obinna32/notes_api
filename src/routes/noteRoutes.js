@@ -1,7 +1,7 @@
 const express = require("express");
 const { protect } = require("../middleware/auth");
 const { createNote, getNotes, getNote, updateNote, deleteNote } = require("../controllers/noteController");
-const { validate, createNoteRules, updateNoteRules } = require("../models/Note");
+const { validate, createNoteRules, updateNoteRules } = require("../middleware/validators");
 const router = express.Router();
 
 router.use(protect);
