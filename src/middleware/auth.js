@@ -3,7 +3,7 @@ const User = require("../models/User");
 const AppError = require("../utils/AppError");
 
 exports.protect = async (req, res, next) => {
-    const header = req.header.authorization;
+    const header = req.headers.authorization;
     if(!header || !header.startsWith("Bearer ")) {
         throw new AppError("You are not logged in. Please log in to get access.", 401);
     }
