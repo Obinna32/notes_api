@@ -31,7 +31,7 @@ Node.js, Express 5, MongoDB, Mongoose, JWT, bcryptjs, express-validator, helmet,
 | GET | Health check | http://127.0.0.1:4000/api/v1/health | No | Check if API is working |
 | POST | Register | http://127.0.0.1:4000/api/v1/auth/register | No | Register a new user |
 | POST | Login | http://127.0.0.1:4000/api/v1/auth/login | No | Login existing user |
-| POST | getMe | http://127.0.0.1:4000/api/v1/auth/me | Yes | Get Logged in user info |
+| GET | getMe | http://127.0.0.1:4000/api/v1/auth/me | Yes | Get Logged in user info |
 | POST | createNote | http://127.0.0.1:4000/api/v1/notes | Yes | Create New note |
 | GET | getNotes | http://127.0.0.1:4000/api/v1/notes | Yes | Get all Notes |
 | GET | getNote | http://127.0.0.1:4000/api/v1/notes/:id | Yes | Get a note by its id |
